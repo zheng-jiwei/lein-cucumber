@@ -1,4 +1,4 @@
-(defproject com.siili/lein-cucumber "1.0.6"
+(defproject com.siili/lein-cucumber "1.0.7-SNAPSHOT"
   :description "Run cucumber-jvm specifications with leiningen"
   :url https://github.com/siilisolutions/lein-cucumber
   :dependencies [[info.cukes/cucumber-clojure "1.2.4"]
