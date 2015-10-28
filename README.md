@@ -5,11 +5,11 @@
 This is a leiningen plugin for use with [cucumber-jvm](https://github.com/cucumber/cucumber-jvm).
 This is a fork of [lein-cucumber](http://github.com/nilswloka/lein-cucumber) with more up to date dependencies.
 
-[![Clojars Project](http://clojars.org/com.siili/lein-cucumber/latest-version.svg)]
+[![Clojars Project](http://clojars.org/com.siili/lein-cucumber/latest-version.svg)](http://clojars.org/com.siili/lein-cucumber)
 
 ## Usage
 
-1. Add `[lein-cucumber "1.0.4"]` to `:plugins` in your project.clj
+1. Add `[com.siili/lein-cucumber "1.0.5"]` to `:plugins` in your project.clj
 2. Run `lein deps` to fetch all dependencies.
 3. Run all Cucumber features with `lein cucumber`
 
