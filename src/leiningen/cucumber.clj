@@ -48,7 +48,7 @@
       (eval-in-project
        (-> project
            (update-in [:dependencies] conj
-                      ['com.siili/lein-cucumber "1.0.7-SNAPSHOT"]
+                      ['com.siili/lein-cucumber "1.0.7"]
                       ['info.cukes/cucumber-clojure "1.2.4"])
            (update-in [:source-paths] (partial apply conj) glue-paths))
        `(do
