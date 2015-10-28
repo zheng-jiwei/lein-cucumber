@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/punkisdead/lein-cucumber.png)](http://travis-ci.org/punkisdead/lein-cucumber)
+[![Build Status](https://secure.travis-ci.org/siilisolutions/lein-cucumber.png)](http://travis-ci.org/siilisolutions/lein-cucumber)
 
 # lein-cucumber
 
