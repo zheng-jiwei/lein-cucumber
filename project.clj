@@ -5,7 +5,7 @@
                  [leiningen-core "2.0.0"]
                  [org.clojure/clojure "1.6.0"]]
   :profiles {:cucumber {:dependencies [[commons-io "2.4"]]
-                        :plugins [[org.clojars.punkisdead/lein-cucumber "1.0.4"]]}}
+                        :plugins [[com.siili/lein-cucumber "1.0.5"]]}}
   :eval-in :leiningen
   :license {:name "Unlicense"
             :url "http://unlicense.org/"
