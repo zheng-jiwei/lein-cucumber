@@ -9,7 +9,7 @@ This is a fork of [lein-cucumber](http://github.com/nilswloka/lein-cucumber) wit
 
 ## Usage
 
-1. Add `[lein-cucumber "1.0.4"]` to `:plugins` in your project.clj
+1. Add `[com.siili/lein-cucumber "1.0.5"]` to `:plugins` in your project.clj
 2. Run `lein deps` to fetch all dependencies.
 3. Run all Cucumber features with `lein cucumber`
 
