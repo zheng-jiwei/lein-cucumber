@@ -47,11 +47,18 @@ See https://github.com/nilswloka/cucumber-jvm/tree/new-clojure-example/examples/
 
 ## Note
 
-If you like lein-cucumber, consider endorsing me at [coderwall](http://coderwall.com/punkisdead):
+If you like original lein-cucumber, consider endorsing the original coder at: [coderwall](http://coderwall.com/nilswloka)
 
-[![endorse](http://api.coderwall.com/punkisdead/endorsecount.png)](http://coderwall.com/punkisdead)
+[![endorse](http://api.coderwall.com/nilswloka/endorsecount.png)](http://coderwall.com/nilswloka)
+
+If you like my additions to the configuration and more up to date versions, consider endorsing me at: [coderwall](https://coderwall.com/Verneri)
+
+[![endorse](https://api.coderwall.com/Verneri/endorsecount.png)](https://coderwall.com/Verneri)
 
 ## Unlicense
-Written by Jeremy Anderson, 2015. For licensing information, see UNLICENSE.
+
+Originally written by Nils Wloka, 2012
+Additions made by Jeremy Anderson, 2015
+and Verneri Åberg 2015. For licensing information, see UNLICENSE.
 
 Please have a look at http://unlicense.org if you plan to contribute.
