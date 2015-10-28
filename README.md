@@ -22,7 +22,7 @@ lein-cucumber requires Leiningen 2.
 Feature paths are resolved in the following order:
 
 1. Command line options (e.g. `lein cucumber my-features`) override all other settings.
-2. If no command line options for feature paths are given, the `:feature-paths` parameter of the map in `:cucumber` parameter of your project.clj will be used (e.g. `:cucumber-feature-paths ["test/features/"]`).
+2. If no command line options for feature paths are given, the `:feature-paths` parameter of the map in `:cucumber` parameter of your project.clj will be used (e.g. `:cucumber {:feature-paths ["test/features/"]}`).
 3. If neither command line options nor a parameter is used, lein-cucumber looks for features in the `features/` directory.
 
 Glue paths are resolved similarily:
