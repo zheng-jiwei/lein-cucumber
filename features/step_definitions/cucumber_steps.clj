@@ -47,8 +47,9 @@
 (defn- writing-to-result [f]
   (let [out-writer (java.io.StringWriter.)]
     (with-redefs [*out* out-writer]
-      (f)
-      (reset! result (.toString out-writer)))))
+      (try
+        (f)
+        (finally (reset! result (.toString out-writer)))))))
 
 (defn- assert-output-includes [text]
   (assert (.contains @result text)))
@@ -59,6 +60,11 @@
 (Given #"^a lein-cucumber project with the following parameters:$" [parameter-table]
        (let [parameters (map (comp read-string first) (.raw parameter-table))]
          (create-project (project-configuration parameters))))
+
+(Given #"^a lein-cucumber project with the following parameters in project key :cucumber:$" [parameter-table]
+       (let [parameters (into {} [(mapv (comp read-string first) (.raw parameter-table))])]
+         (create-project (project-configuration [:cucumber parameters]))))
+
 
 (Given #"^no features in the \"([^\"]*)\" directory$" [path]
        (create-empty-directory path))
@@ -74,7 +80,8 @@
 
 (When #"^I run lein-cucumber without command line arguments$" []
       (writing-to-result
-       (fn [] (cucumber (read-project)))))
+       (fn []
+         (cucumber (read-project)))))
 
 (When #"^I run lein-cucumber with arguments \"([^\"]*)\"$" [args]
       (writing-to-result
@@ -94,4 +101,4 @@
       (assert (.exists (as-file "target/test_project/target/test-reports/cucumber.out"))))
 
 (Then #"^there should be an html file in the \"([^\"]*)\" directory$" [arg1]
-      (assert (.exists (as-file "target/test_project/target/test-reports/index.html"))))
+      (assert (.exists (as-file (str "target/test_project/" arg1 "/index.html")))))

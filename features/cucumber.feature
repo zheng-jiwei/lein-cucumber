@@ -45,16 +45,39 @@ Feature: lein-cucumber works
     When I run lein-cucumber with arguments "--glue foo"
     Then the step should be executed
 
-  Scenario: Creates an output file 
+  Scenario: Creates an output file
     Given a lein-cucumber project without special configuration
     And a feature in the "features" directory
     And a step definition in the "features/step_definitions" directory
     When I run lein-cucumber with arguments "--plugin pretty:target/test-reports/cucumber.out"
     Then there should be an output file in the "target/test-reports" directory
 
-  Scenario: Creates an html output file 
+  Scenario: Creates an html output file
     Given a lein-cucumber project without special configuration
     And a feature in the "features" directory
     And a step definition in the "features/step_definitions" directory
     When I run lein-cucumber with arguments "--plugin html:target/test-reports"
     Then there should be an html file in the "target/test-reports" directory
+
+  Scenario: Specify feature directory in project.clj s cucumber section
+    Given a lein-cucumber project with the following parameters in project key :cucumber:
+      | :feature-paths |
+      | ["test/features/"]      |
+    And a feature in the "test/features/" directory
+    And a step definition in the "test/features/step_definitions" directory
+    When I run lein-cucumber without command line arguments
+    Then the step should be executed
+
+  Scenario: Creates an html output file from project configuration
+    Given a lein-cucumber project with the following parameters in project key :cucumber:
+      | :formatter                                     |
+      | {:type :html :path "target/test-reports-with-conf"} |
+    And a feature in the "features" directory
+    And a step definition in the "features/step_definitions" directory
+    When I run lein-cucumber without command line arguments
+    Then there should be an html file in the "target/test-reports-with-conf" directory
+
+
+
+
+

@@ -14,10 +14,24 @@
       (.. runtime-options (getGlue) (addAll (into [] (map #(str (file % "step_definitions/")) feature-paths))))
       (.. runtime-options (getGlue) (addAll glue-paths)))))
 
-(defn create-partial-runtime-options [{:keys [cucumber-feature-paths target-path cucumber-glue-paths] :or {cucumber-feature-paths ["features"]}} args]
-  (let [runtime-options (RuntimeOptions. (vec args))]
-    (configure-feature-paths runtime-options cucumber-feature-paths)
-    (configure-glue-paths runtime-options cucumber-glue-paths (.getFeaturePaths runtime-options))
+(defn create-formatter-name [formatter]
+  (if (map? formatter)
+    (str (name (:type formatter)) ":" (:path formatter))
+    (name formatter)))
+
+(defn add-formatter [args {:keys [formatter]}]
+  (if
+    (and
+     formatter
+     (not
+      (some #{"-p" "--plugin"} (map #(.. %1 (trim) (toLowerCase)) args))))
+    (concat ["-p" (create-formatter-name formatter)] args)
+    args))
+
+(defn create-partial-runtime-options [{:keys [cucumber-feature-paths target-path cucumber-glue-paths cucumber] :or {cucumber-feature-paths ["features"]} :as opts} args]
+  (let [runtime-options (RuntimeOptions. (vec (add-formatter args cucumber)))]
+    (configure-feature-paths runtime-options (or (:feature-paths cucumber) cucumber-feature-paths))
+    (configure-glue-paths runtime-options (or (:glue-paths cucumber) cucumber-glue-paths) (.getFeaturePaths runtime-options))
     runtime-options))
 
 (defn cucumber
@@ -29,14 +43,15 @@
           glue-paths (vec (.getGlue runtime-options))
           feature-paths (vec (.getFeaturePaths runtime-options))
           target-path (:target-path project)
+          cucumber-opts (:cucumber project)
           project (project/merge-profiles project [:test])]
       (eval-in-project
        (-> project
            (update-in [:dependencies] conj
-                      ['com.siili/lein-cucumber "1.0.5"]
+                      ['com.siili/lein-cucumber "1.0.7-SNAPSHOT"]
                       ['info.cukes/cucumber-clojure "1.2.4"])
            (update-in [:source-paths] (partial apply conj) glue-paths))
        `(do
-          (let [~runtime (leiningen.cucumber.util/run-cucumber! ~feature-paths ~glue-paths ~target-path ~(vec args))]
+          (let [~runtime (leiningen.cucumber.util/run-cucumber! ~feature-paths ~glue-paths ~target-path ~(vec (add-formatter args cucumber-opts)))]
             (leiningen.core.main/exit (.exitStatus ~runtime))))
        '(require 'leiningen.cucumber.util 'leiningen.core.main)))))
