@@ -34,7 +34,7 @@
        (-> project
            (update-in [:dependencies] conj
                       ['com.siili/lein-cucumber "1.0.5"]
-                      ['info.cukes/cucumber-clojure "1.2.0"])
+                      ['info.cukes/cucumber-clojure "1.2.4"])
            (update-in [:source-paths] (partial apply conj) glue-paths))
        `(do
           (let [~runtime (leiningen.cucumber.util/run-cucumber! ~feature-paths ~glue-paths ~target-path ~(vec args))]
