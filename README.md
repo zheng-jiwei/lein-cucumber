@@ -5,7 +5,7 @@
 This is a leiningen plugin for use with [cucumber-jvm](https://github.com/cucumber/cucumber-jvm).
 This is a fork of [lein-cucumber](http://github.com/nilswloka/lein-cucumber) with more up to date dependencies.
 
-[![Clojars Project](http://clojars.org/org.clojars.punkisdead/lein-cucumber/latest-version.svg)](http://clojars.org/org.clojars.punkisdead/lein-cucumber)
+[![Clojars Project](http://clojars.org/com.siili/lein-cucumber/latest-version.svg)]
 
 ## Usage
 
